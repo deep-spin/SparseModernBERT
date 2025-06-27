@@ -1,0 +1,12 @@
+einops
+torch==2.5.1
+transformers @ git+https://github.com/huggingface/transformers.git@add5f0566cb6ebd428c057da8bcd86f57e5181b7
+triton==3.1.0
+pylate
+sentence_transformers
+mteb
+entmax
+adasplash==0.1.1b
+scikit-learn==1.6.1
+scipy==1.15.1
+sentence-transformers==3.3.0
