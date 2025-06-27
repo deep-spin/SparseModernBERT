@@ -1,0 +1,28 @@
+torchrun --nproc_per_node=2 train.py \
+    --model_name_or_path roberta-base \
+    --dataset_name HuggingFaceFW/fineweb-edu \
+    --dataset_subset CC-MAIN-2024-10 \
+    --do_train \
+    --do_eval \
+    --fp16 \
+    --overwrite_output_dir \
+    --output_dir /mnt/scratch-artemis/mtreviso/sparse_pretraining/mlm-roberta-output-600k \
+    --per_device_train_batch_size 16 \
+    --per_device_eval_batch_size 16 \
+    --learning_rate 5e-5 \
+    --dataloader_num_workers 4 \
+    --gradient_accumulation_steps 1 \
+    --prediction_loss_only \
+    --max_steps 600000 \
+    --logging_steps 100 \
+    --save_steps 10000 \
+    --eval_steps 10000 \
+    --max_eval_samples 10000 \
+    --save_total_limit 5 \
+    --num_train_epochs 1 \
+    --mlm_probability 0.15 \
+    --eval_strategy steps \
+    --strategy linear \
+    --initial_alpha 1.01 \
+    --final_alpha 2.0 \
+    --max_alpha_steps 550000

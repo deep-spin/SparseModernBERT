@@ -1,0 +1,35 @@
+python3 train_modernbert.py \
+    --model_name_or_path answerdotai/ModernBERT-base \
+    --tokenizer_name answerdotai/ModernBERT-base \
+    --dataset_name HuggingFaceFW/fineweb-edu \
+    --dataset_config_name CC-MAIN-2024-10 \
+    --max_seq_length 8192 \
+    --streaming \
+    --do_train \
+    --do_eval \
+    --fp16 \
+    --overwrite_output_dir \
+    --output_dir /mnt/scratch-artemis/mtreviso/sparse_pretraining/mlm-modernbert-output-150k-finetuned-alpha20-fixed-kernel \
+    --per_device_train_batch_size 2 \
+    --per_device_eval_batch_size 2 \
+    --learning_rate 5e-5 \
+    --dataloader_num_workers 8 \
+    --gradient_accumulation_steps 1 \
+    --prediction_loss_only \
+    --max_steps 150000 \
+    --logging_steps 1000 \
+    --save_steps 20000 \
+    --eval_steps 100000000 \
+    --max_eval_samples 1000 \
+    --save_total_limit 5 \
+    --num_train_epochs 1 \
+    --mlm_probability 0.15 \
+    --eval_strategy steps \
+    --strategy linear \
+    --initial_alpha 1.01 \
+    --final_alpha 2.0 \
+    --max_alpha_steps 50000 \
+    --use_triton_entmax \
+    --pre_iter 5 \
+    --post_iter 5
+
